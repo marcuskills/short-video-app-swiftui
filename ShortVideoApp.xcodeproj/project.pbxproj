@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		312E328329CC2EA300B2872A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E328229CC2EA300B2872A /* ProfileView.swift */; };
+		312E328629CC545F00B2872A /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E328529CC545F00B2872A /* ButtonsView.swift */; };
 		CE76CA1528DCDB1A001342AD /* ShortVideoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76CA1428DCDB1A001342AD /* ShortVideoAppApp.swift */; };
 		CE76CA1728DCDB1A001342AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76CA1628DCDB1A001342AD /* ContentView.swift */; };
 		CE76CA1928DCDB1A001342AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE76CA1828DCDB1A001342AD /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		312E328229CC2EA300B2872A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		312E328529CC545F00B2872A /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		CE76CA1128DCDB1A001342AD /* ShortVideoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortVideoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE76CA1428DCDB1A001342AD /* ShortVideoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoAppApp.swift; sourceTree = "<group>"; };
 		CE76CA1628DCDB1A001342AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,9 +97,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		312E327F29CC289100B2872A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				312E328229CC2EA300B2872A /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		312E328429CC544F00B2872A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				312E328529CC545F00B2872A /* ButtonsView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		CE76CA0828DCDB1A001342AD = {
 			isa = PBXGroup;
 			children = (
+				312E328429CC544F00B2872A /* Buttons */,
+				312E327F29CC289100B2872A /* Profile */,
 				CE76CA4028DCDB62001342AD /* video-1.mp4 */,
 				CE76CA4428DCDB63001342AD /* video-2.mp4 */,
 				CE76CA3E28DCDB62001342AD /* video-3.mp4 */,
@@ -301,7 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE76CA1728DCDB1A001342AD /* ContentView.swift in Sources */,
+				312E328629CC545F00B2872A /* ButtonsView.swift in Sources */,
 				CE76CA1528DCDB1A001342AD /* ShortVideoAppApp.swift in Sources */,
+				312E328329CC2EA300B2872A /* ProfileView.swift in Sources */,
 				CE76CA5328DCE622001342AD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,16 @@
 import SwiftUI
 import AVKit
 
+enum AppPage {
+    case home
+    case profile
+    // Add more cases for additional pages
+}
+
+
 struct ContentView: View {
     var body: some View {
-
+        
         Home()
         
     }
@@ -23,6 +30,8 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct Home: View {
+    @State private var following = true
+    @State private var currentPage: AppPage = .home
     
     @State var index = 0
     @State var top = 0
@@ -40,181 +49,24 @@ struct Home: View {
     ]
     
     var body: some View {
+        Group {
+            switch currentPage {
+            case .home:
+                VStack {
+                    // Replace the buttons with the ButtonsView
+                    ButtonsView(currentPage: $currentPage)
+                    // ...
+                }
+            case .profile:
+                ProfileView(showProfileView: $showProfileView)
+            // Add more cases for additional pages
+            }
+        }
         ZStack {
             PlayerScrollView(data: self.$data)
-            VStack{
-                HStack(spacing: 15){
-                    Button(action: {
-                        self.top = 0
-                    }) {
-                        Text("Following")
-                            .foregroundColor(self.top == 0 ? .white : Color.white.opacity(0.45))
-                            .fontWeight(self.top == 0 ? .bold : .none)
-                            .padding(.vertical)
-                    }
-                    Button(action: {
-                        self.top = 1
-                    }) {
-                        Text("For You")
-                            .foregroundColor(self.top == 1 ? .white : Color.white.opacity(0.45))
-                            .fontWeight(self.top == 1 ? .bold : .none)
-                        .padding(.vertical)
-                        
-                    }
-                    Button(action: {
-                        self.top = 2
-                    }) {
-                        Text("Live")
-                            .foregroundColor(self.top == 2 ? .white : Color.white.opacity(0.45))
-                            .fontWeight(self.top == 2 ? .bold : .none)
-                        .padding(.vertical)
-                    }
-                }
-                Spacer()
-                HStack {
-                    Spacer()
-                    VStack(spacing: 15) {
-                        Button(action: {
-                            
-                        }) {
-                            Image("image-profile-1")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .clipShape(Circle())
-                        }
-                        
-                        Button(action: {
-                            
-                        }) {
-                            VStack(spacing: 5) {
-                                Image(systemName: "suit.heart.fill")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("22k")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        Button(action: {
-                            
-                        }) {
-                            VStack(spacing: 5) {
-                                Image(systemName: "message.fill")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("1021")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        Button(action: {
-                            
-                        }) {
-                            VStack(spacing: 5) {
-                                Image(systemName: "arrowshape.turn.up.right.fill")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("Share")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        Button(action: {
-                            
-                        }) {
-                            VStack(spacing: 5) {
-                                Image(systemName: "hurricane")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("Trending")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        Button(action: {
-                            
-                        }) {
-                            VStack(spacing: 5) {
-                                Image(systemName: "bag.fill")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                Text("Shop")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                    .padding(.bottom, 40)
-                    .padding(.trailing)
-                }
-                HStack(spacing: 0) {
-                    Button(action: {
-                        
-                        self.index = 0
-                        
-                    }) {
-                        Image("home-white")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(self.index == 0 ? .white : Color.white.opacity(0.35))
-                            .padding(.horizontal)
-                    }
-                    
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {
-                        
-                        self.index = 1
-                        
-                    }) {
-                        Image("search-white")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(self.index == 1 ? .white : Color.white.opacity(0.35))
-                            .padding(.horizontal)
-                    }
-
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {
-                        
-                    }) {
-                        Image("Hot-linear-button-1")
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width: 80, height: 65)
-                            .padding(.horizontal)
-                    }
-                    
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {
-                        
-                        self.index = 2
-                        
-                    }) {
-                        Image("comment-white")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(self.index == 2 ? .white : Color.white.opacity(0.35))
-                            .padding(.horizontal)
-                    }
-                                   
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {
-                        
-                        self.index = 3
-                        
-                    }) {
-                        Image("profile-white")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(self.index == 3 ? .white : Color.white.opacity(0.35))
-                            .padding(.horizontal)
-                    }
-                }
-                .padding(.horizontal)
-            }
             // Code to ignore all the edges on the screen
-            .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-            .padding(.bottom, (UIApplication.shared.windows.first?.safeAreaInsets.bottom)! + 5)
+                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+                .padding(.bottom, (UIApplication.shared.windows.first?.safeAreaInsets.bottom)! + 5)
         }
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .edgesIgnoringSafeArea(.all)
@@ -231,8 +83,8 @@ struct PlayerView: View {
                 ZStack {
                     Player(player: self.data[i].player)
                     // This line of code creates the effect of full size screen for paging
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                    .offset(y: -5)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                        .offset(y: -5)
                     
                     if self.data[i].replay{
                         Button(action: {
@@ -252,7 +104,7 @@ struct PlayerView: View {
             }
         }
         .onAppear {
-           self.data[0].player.play()
+            self.data[0].player.play()
         }
     }
 }
@@ -336,7 +188,7 @@ struct PlayerScrollView: UIViewRepresentable {
                 parent.data[index].player.play()
                 parent.data[index].player.actionAtItemEnd = .none
                 NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: parent.data[index].player.currentItem, queue: .main) { [self] (_) in
-                // Notification to identify at the end of the video
+                    // Notification to identify at the end of the video
                     //enables replay button
                     self.parent.data[self.index].replay = true
                 }
